@@ -86,6 +86,8 @@ def load_model(output_dir):
 
     checkpoint_kwargs = {'config': cfg}
     checkpoint = locate_checkpoint(cfg, mode="best")
+    checkpoint_kwargs["config"]["model"]["load_pretrained_swin"] = False
+    checkpoint_kwargs["config"]["model"]["load_pretrained"] = False
     model = model_class.load_from_checkpoint(checkpoint_path=checkpoint, strict=False, **checkpoint_kwargs)
     return model
 
